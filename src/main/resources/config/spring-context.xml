@@ -32,6 +32,7 @@
     <!--配置工厂-->
     <bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:config/mybatis-config.xml"/>
         <property name="mapperLocations" >
             <value> mappers/org/cs/**/*.xml</value>
         </property>
@@ -42,5 +43,7 @@
         <property name="basePackage" value="org.cs.**.dao"/>
     </bean>
 
-    <context:component-scan base-package="org.cs"/>
+    <context:component-scan base-package="org.cs">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
 </beans>
